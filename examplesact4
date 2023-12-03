@@ -1,0 +1,44 @@
+// App.js
+import React, { useState, useContext, useEffect, useReducer } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import axios from 'axios';
+
+// Context API
+const AuthContext = React.createContext();
+
+// Reducer para manejar estados más complejos
+const reducer = (state, action) => {
+  // lógica del reducer
+};
+
+const App = () => {
+  // Estado local
+  const [books, setBooks] = useState([]);
+
+  // Contexto para compartir datos
+  const authContextValue = {
+    // valores del contexto
+  };
+
+  // Efecto para realizar la petición HTTP al cargar la página
+  useEffect(() => {
+    axios.get('/libros')
+      .then(response => setBooks(response.data))
+      .catch(error => console.error(error));
+  }, []);
+
+  return (
+    <Router>
+      <AuthContext.Provider value={authContextValue}>
+        <Switch>
+          <Route path="/libros">
+            {/* Componente de Lista de Libros */}
+          </Route>
+          {/* Otras rutas */}
+        </Switch>
+      </AuthContext.Provider>
+    </Router>
+  );
+};
+
+export default App;
